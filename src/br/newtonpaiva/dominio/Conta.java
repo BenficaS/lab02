@@ -8,15 +8,15 @@ public class Conta {
     private Integer numero;
     private Double saldo;
 
-    public Conta(){
+    public Conta() {
         this(null);
     }
 
-    public Conta(Integer numero){
-        this(numero,0.0);
+    public Conta(Integer numero) {
+        this(numero, 0.0);
     }
 
-    public Conta(Integer numero, Double saldo){
+    public Conta(Integer numero, Double saldo) {
         this.numero = numero;
         this.saldo = saldo;
     }
@@ -27,11 +27,23 @@ public class Conta {
     }
 
     public Double depositar(Double valor) {
-        if (valor == null || valor<=0)
+        if (valor == null || valor <= 0)
             throw new IllegalArgumentException("Valor menor do que 0");
 
-        saldo+=valor;
+        saldo += valor;
         return saldo;
+    }
+
+    public void transferir(Conta destino, Double valor) {
+        if (valor == null || valor <= 0)
+            if (this.getSaldo() < valor)
+                throw new IllegalArgumentException("não ha saldo na caonta");
+            if (this.equals(destino))
+                throw new IllegalArgumentException(" conta mesma de destino invalido");
+
+        this.sacar(valor);
+        destino.depositar(valor);
+
     }
 
     public Integer getNumero() {
