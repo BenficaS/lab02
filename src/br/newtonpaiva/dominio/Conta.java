@@ -3,10 +3,10 @@ package br.newtonpaiva.dominio;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Conta {
+public class Conta implements Trasferencia {
 
     private Integer numero;
-    private Double saldo;
+    protected Double saldo;
 
     public Conta() {
         this(null);
